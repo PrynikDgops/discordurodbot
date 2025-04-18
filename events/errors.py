@@ -1,7 +1,7 @@
-import disnake # type: ignore
-from disnake.ext import commands # type: ignore
-from disnake import HTTPException, NotFound # type: ignore
-from disnake.ext.commands import MissingPermissions, Context # type: ignore
+import disnake
+from disnake.ext import commands
+from disnake import HTTPException, NotFound
+from disnake.ext.commands import MissingPermissions, Context
 
 class ErrorHandler(commands.Cog):
     def __init__(self, bot: commands.Bot):

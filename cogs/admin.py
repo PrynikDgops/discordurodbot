@@ -1,23 +1,8 @@
+from contextvars import Context
 import disnake
 from disnake.ext import commands
 from utils.config import load_config, save_config
-
-def allowed_check(inter: disnake.ApplicationCommandInteraction) -> bool:
-    """Check if the user has access to the commands."""
-    allowed_users = config.get("command_access_users", [])
-    allowed_roles = config.get("command_access_roles", [])
-    member = inter.author
-
-    # Check if the user is in the allowed users list
-    if member.id in allowed_users:
-        return True
-
-    # Check if the user has any of the allowed roles
-    for role in member.roles:
-        if role.id in allowed_roles:
-            return True
-
-    return False
+from utils.helpers import allowed_check
 
 config = load_config()
 
@@ -26,7 +11,7 @@ class AdminCommands(commands.Cog):
         self.bot = bot
 
     @commands.slash_command(name="выдать-доступ-пользователю", description="Выдает доступ к командам указанному пользователю.")
-    @commands.check(allowed_check) # type: ignore
+    @commands.check(allowed_check)
     async def grant_access_user(inter: disnake.ApplicationCommandInteraction, member: disnake.Member):
         allowed_users = config.get("command_access_users", [])
         if member.id not in allowed_users:

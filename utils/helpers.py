@@ -1,10 +1,20 @@
 from disnake import Member # type: ignore
+from disnake.ext.commands import Context
 from utils.config import load_config
 from datetime import datetime, timedelta
 import re
 
 config = load_config()
 
+async def allowed_check(ctx: Context) -> bool:
+    """Проверяет, имеет ли пользователь доступ к командам."""
+    if ctx.author.guild_permissions.administrator:
+        return True
+    allowed_users = config.get("command_access_users", [])
+    allowed_roles = config.get("command_access_roles", [])
+    if ctx.author.id in allowed_users:
+        return True
+    return any(role.id in allowed_roles for role in ctx.author.roles)
 def is_applicable(member: Member) -> bool:
     applicable_roles = config.get("applicable_roles", [])
     return not applicable_roles or any(role.id in applicable_roles for role in member.roles)

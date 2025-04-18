@@ -1,6 +1,7 @@
 from discord.ext.commands import bot
-import disnake # type: ignore
-from disnake.ext import commands # type: ignore
+import disnake
+from disnake.ext import commands
+from utils.helpers import allowed_check
 from utils.config import load_config, save_config
 
 config = load_config()
@@ -24,7 +25,7 @@ class WhitelistCommands(commands.Cog):
 
 
     @commands.slash_command(name="убрать-из-вайтлиста", description="Удаляет пользователя из whitelist.")
-    @commands.check(allowed_check) # type: ignore
+    @commands.check(allowed_check)
     async def whitelist_remove_cmd(
         inter: disnake.ApplicationCommandInteraction, member: disnake.Member):
         whitelist_list = config.get("whitelist", [])
@@ -40,7 +41,7 @@ class WhitelistCommands(commands.Cog):
 
 
     @commands.slash_command(name="список-вайтлиста", description="Выводит список пользователей в whitelist.")
-    @commands.check(allowed_check) # type: ignore
+    @commands.check(allowed_check)
     async def whitelist_list_cmd(inter: disnake.ApplicationCommandInteraction):
         whitelist_list = config.get("whitelist", [])
         if not whitelist_list:

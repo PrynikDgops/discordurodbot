@@ -1,5 +1,6 @@
-import disnake # type: ignore
-from disnake.ext import commands # type: ignore
+import disnake
+from disnake.ext import commands
+from utils.helpers import allowed_check
 from utils.config import load_config, save_config
 
 config = load_config()
@@ -15,7 +16,7 @@ class SettingsCommands(commands.Cog):
         await inter.response.send_message(f"Требуемое время работы установлено: {hours} часов.", ephemeral=True)
         
     @commands.slash_command(name="установить-период-работы", description="Устанавливает период проверки отчетности (часы).",)
-    @commands.check(allowed_check) # type: ignore
+    @commands.check(allowed_check)
     async def set_report_check_period(
         inter: disnake.ApplicationCommandInteraction, hours: float):
         config["report_check_period_hours"] = hours

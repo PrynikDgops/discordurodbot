@@ -1,5 +1,5 @@
-import disnake # type: ignore
-from disnake.ext import commands # type: ignore
+import disnake
+from disnake.ext import commands
 import asyncio
 from utils.config import load_config, save_config
 from utils.helpers import generate_report
