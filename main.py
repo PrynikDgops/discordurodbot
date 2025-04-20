@@ -1,6 +1,6 @@
-import disnake # type: ignore
-from disnake.ext import commands # type: ignore
-from dotenv import load_dotenv # type: ignore
+import disnake
+from disnake.ext import commands
+from dotenv import load_dotenv
 import os
 
 load_dotenv()
@@ -14,7 +14,6 @@ bot.load_extension("events.errors")
 bot.load_extension("cogs.admin")
 bot.load_extension("cogs.whitelist")
 bot.load_extension("cogs.reports")
-bot.load_extension("cogs.voice")
 bot.load_extension("cogs.settings")
 
 # Запуск бота

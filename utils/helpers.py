@@ -1,4 +1,4 @@
-from disnake import Member # type: ignore
+from disnake import Member
 from disnake.ext.commands import Context
 from utils.config import load_config
 from datetime import datetime, timedelta
