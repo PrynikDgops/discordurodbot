@@ -1,0 +1,11 @@
+{
+    "main_guild_id": null,
+    "city_member_role_id": null,
+    "probation_role_id": null,
+    "report_channel_id": null,
+    "log_channel_id": null,
+    "owner_id": null,
+    "deputy_role_id": null,
+    "guardian_role_id": null,
+    "big_city_member_role_id": null
+  }
