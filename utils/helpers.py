@@ -1,10 +1,11 @@
 from disnake import Member
 from disnake.ext.commands import Context
-from utils.config import load_config
 from datetime import datetime, timedelta
 import re
+from utils.config import load_config
 
 config = load_config()
+whitelist = config.get("whitelist", [])
 
 async def allowed_check(ctx: Context) -> bool:
     """Проверяет, имеет ли пользователь доступ к командам."""
@@ -31,8 +32,7 @@ async def generate_report(report_channel, period: float) -> str:
             hours_str = match.group(1).replace(",", ".")
             try:
                 hours_val = float(hours_str)
-                minutes = hours_val * 60
-                work_times[msg.author.id] = work_times.get(msg.author.id, 0) + minutes
+                work_times[msg.author.id] = work_times.get(msg.author.id, 0) + hours_val
                 await msg.add_reaction("✅")
             except Exception:
                 await msg.add_reaction("❌")
@@ -43,7 +43,7 @@ async def generate_report(report_channel, period: float) -> str:
     worked_insufficient = []
     not_worked = []
     for member in report_channel.guild.members:
-        if member.bot or not is_applicable(member):
+        if member.bot or not is_applicable(member) or member.id in whitelist:
             continue
         total = work_times.get(member.id, 0)
         if total >= required_minutes:
