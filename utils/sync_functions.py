@@ -4,7 +4,8 @@ import datetime
 
 import settings
 from embeds import build_embed
-from database import database
+from utils import database
+
 
 
 async def setup_database(bot: commands.Bot) -> None:

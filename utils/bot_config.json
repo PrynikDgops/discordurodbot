@@ -1,11 +1,13 @@
 {
-    "main_guild_id": null,
-    "city_member_role_id": null,
-    "probation_role_id": null,
-    "report_channel_id": null,
-    "log_channel_id": null,
-    "owner_id": null,
-    "deputy_role_id": null,
-    "guardian_role_id": null,
-    "big_city_member_role_id": null
+    "main_guild_id": 788136660730773534,
+    "city_member_role_id": 788176332440993833,
+    "probation_role_id": 1126522356525977610,
+    "report_channel_id": 1209909129670295582,
+    "log_channel_id": 1209909129670295582,
+    "owner_id": 541310847478136842,
+    "deputy_role_id": 800840559500853278,
+    "guardian_role_id": 1211029002358231081,
+    "big_city_member_role_id": 788171175733755916,
+    "members_count_channel_id": 1246198473670262877,
+    "head_role_id": 788170738581766165
   }
