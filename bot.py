@@ -19,9 +19,9 @@ class UrodCityPointer(commands.Bot):
             intents=disnake.Intents.all(),
             allowed_mentions=disnake.AllowedMentions(),
             activity=disnake.Activity(
-                type=disnake.ActivityType.watching, name="больше не за поинтами"
+                type=disnake.ActivityType.watching, name="за отчетами"
             ),
-            description="больше не считает поинты города уродов",
+            description="машина уродского режима",
         )
 
     async def on_ready(self):
@@ -33,7 +33,3 @@ class UrodCityPointer(commands.Bot):
     async def sync_database(self):
         await sync_functions.setup_database(bot=self)
         await settings.BOT_CONFIG.update_member_count_channel_name(bot=self)
-
-    @tasks.loop(seconds=55)
-    async def sync_report(self):
-        await sync_functions.report_sync(bot=self)
