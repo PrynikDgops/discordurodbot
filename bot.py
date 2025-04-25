@@ -17,7 +17,6 @@ class UrodCityPointer(commands.Bot):
             owner_ids=set(owner),
             status=disnake.Status.online,
             intents=disnake.Intents.all(),
-            command_prefix=None,
             allowed_mentions=disnake.AllowedMentions(),
             activity=disnake.Activity(
                 type=disnake.ActivityType.watching, name="больше не за поинтами"
