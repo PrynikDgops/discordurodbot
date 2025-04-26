@@ -27,7 +27,6 @@ class UrodCityPointer(commands.Bot):
     async def on_ready(self):
         logger.info(f"Logged in as {self.user.name}")
         self.sync_database.start()
-        self.sync_report.start()
 
     @tasks.loop(hours=1)
     async def sync_database(self):
