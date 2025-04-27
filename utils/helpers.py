@@ -1,4 +1,5 @@
 from disnake import Member
+import disnake
 from disnake.ext.commands import Context
 from datetime import datetime, timedelta
 import re
@@ -6,6 +7,13 @@ from utils.config import load_config
 
 config = load_config()
 whitelist = config.get("whitelist", [])
+
+def is_applicable(member: disnake.Member) -> bool:
+    """Возвращает True, если список applicable_roles пуст или участник имеет хотя бы одну из указанных ролей."""
+    applicable_roles = config.get("applicable_roles", [])
+    if not applicable_roles:
+        return True
+    return any(role.id in applicable_roles for role in member.roles)
 
 async def allowed_check(ctx: Context) -> bool:
     """Проверяет, имеет ли пользователь доступ к командам."""
